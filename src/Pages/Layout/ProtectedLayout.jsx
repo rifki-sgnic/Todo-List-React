@@ -36,10 +36,18 @@ const ProtectedLayout = () => {
         </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse>
-          <Navbar.Link href="/dashboard" active={true}>
+          <Navbar.Link
+            href="/dashboard"
+            active={location.pathname === "/dashboard" ? true : false}
+          >
             Home
           </Navbar.Link>
-          <Navbar.Link href="/profile">Profile</Navbar.Link>
+          <Navbar.Link
+            href="/profile"
+            active={location.pathname === "/profile" ? true : false}
+          >
+            Profile
+          </Navbar.Link>
           <Navbar.Link as={"button"} onClick={handleLogout}>
             Logout
           </Navbar.Link>

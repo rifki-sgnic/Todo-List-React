@@ -1,10 +1,11 @@
 import { Navbar } from "flowbite-react";
 import React from "react";
-import { Navigate, useOutlet } from "react-router-dom";
+import { Navigate, useLocation, useOutlet } from "react-router-dom";
 import { useAuth } from "../../utils/useAuth";
 
 const MainLayout = () => {
   const { user } = useAuth();
+  const location = useLocation();
   if (user) {
     return <Navigate to="/dashboard" />;
   }
@@ -21,11 +22,24 @@ const MainLayout = () => {
         </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse>
-          <Navbar.Link href="/" active={true}>
+          <Navbar.Link
+            href="/"
+            active={location.pathname === "/" ? true : false}
+          >
             Home
           </Navbar.Link>
-          <Navbar.Link href="/about">About</Navbar.Link>
-          <Navbar.Link href="/login">Login</Navbar.Link>
+          <Navbar.Link
+            href="/about"
+            active={location.pathname === "/about" ? true : false}
+          >
+            About
+          </Navbar.Link>
+          <Navbar.Link
+            href="/login"
+            active={location.pathname === "/login" ? true : false}
+          >
+            Login
+          </Navbar.Link>
         </Navbar.Collapse>
       </Navbar>
       <main className="p-4">{outlet}</main>
